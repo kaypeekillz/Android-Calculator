@@ -73,15 +73,15 @@
                 android:layout_height="80dp"
                 android:layout_weight="1"
                 android:textSize="30dp"
-                android:text="AC"/>
+                android:text="CE"/>
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/plusOrMinusBtn"
+                android:id="@+id/backBtn"
                 android:layout_width="0dp"
                 android:layout_height="80dp"
                 android:layout_weight="1"
                 android:textSize="30dp"
-                android:text="+/-"/>
+                android:text="Bk"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/percentBtn"

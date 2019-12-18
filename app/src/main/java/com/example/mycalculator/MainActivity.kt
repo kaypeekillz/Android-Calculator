@@ -70,15 +70,23 @@ class MainActivity: AppCompatActivity() {
         divideBtn.setOnClickListener {
             solveProblem("/", false)
         }
-        plusOrMinusBtn.setOnClickListener {
-            solveProblem("+/-", false)
-        }
+//        plusOrMinusBtn.setOnClickListener {
+//            solveProblem("+/-", false)
+//        }
         percentBtn.setOnClickListener {
-            solveProblem("%", false)
+            solveProblem("/ 100", false)
         }
 
         clearBtn.setOnClickListener {
             screenOne.text = ""
+            screenTwo.text = ""
+        }
+
+        backBtn.setOnClickListener {
+            val string = screenOne.text.toString()
+            if (string.isNotEmpty()) {
+                screenOne.text = string.substring(0, string.length - 1)
+            }
             screenTwo.text = ""
         }
         
@@ -92,6 +100,9 @@ class MainActivity: AppCompatActivity() {
         equalToBtn.setOnClickListener {
             try {
                 val expression = ExpressionBuilder(screenOne.text.toString()).build()
+//                if (screenOne.text.contains("%", false)) {
+//                    screenOne.text.replace("%".toRegex(), "/ 100")
+//                }
                 val result = expression.evaluate()
                 val longResult = result.toLong()
                 if (result == longResult.toDouble()) {
@@ -106,10 +117,10 @@ class MainActivity: AppCompatActivity() {
     }
 
         fun solveProblem(string: String, canClear: Boolean) {
+
             if (screenTwo.text.isNotEmpty()) {
                 screenOne.text = ""
             }
-
             if (canClear) {
                 screenTwo.text = ""
                 screenOne.append(string)
