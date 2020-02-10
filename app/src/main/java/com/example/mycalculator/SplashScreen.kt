@@ -7,7 +7,7 @@ import android.os.Handler
 import android.view.Window
 import android.view.WindowManager
 
-class SplashScreen : AppCompatActivity() {
+class SplashScreen: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

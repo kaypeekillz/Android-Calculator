@@ -3,26 +3,16 @@ package com.example.mycalculator
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.core.text.isDigitsOnly
 import kotlinx.android.synthetic.main.activity_main.*
 import net.objecthunter.exp4j.ExpressionBuilder
 import java.lang.Exception
 
 class MainActivity: AppCompatActivity() {
 
-//    displayValue: '0',
-//    firstOperand: null,
-//    waitingForSecondOperand: false,
-//    operator: null,
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-//        var displayValue = "0"
-//        var firstOperand = null
-//        var waitingForSecondOperand = false
-//        var operator = null
-//        var clear = true
 
         dotBtn.setOnClickListener {
             solveProblem(".", true)
@@ -58,17 +48,52 @@ class MainActivity: AppCompatActivity() {
             solveProblem("9", true)
         }
 
+//        fun checkLastValue() {
+//            val screenValue = screenOne.getText().toString()
+//            if (screenValue.endsWith("+")){
+//                solveProblem("", false)
+//            }
+//        }
+
+//        val screenValue = screenOne.getText().toString()
         additionBtn.setOnClickListener {
-            solveProblem("+", false)
+            val screenValue = screenOne.getText().toString()
+//            checkLastValue()
+//            val lastValue = screenValue.substring(0, screenValue.length)
+//            var lastValue = screenValue.toCharArray(0,screenValue.length -1)
+            if (screenOne.getText().toString().length == 0 || screenValue.endsWith("+") || screenValue.endsWith("-")
+                || screenValue.endsWith("/") || screenValue.endsWith("*")) {
+                solveProblem("", false)
+            } else {
+                solveProblem("+", false)
+            }
         }
         minusBtn.setOnClickListener {
-            solveProblem("-", false)
+            val screenValue = screenOne.getText().toString()
+            if (screenOne.getText().toString().length == 0 || screenValue.endsWith("+") || screenValue.endsWith("-")
+                || screenValue.endsWith("/") || screenValue.endsWith("*")) {
+                solveProblem("", false)
+            } else {
+                solveProblem("-", false)
+            }
         }
         multiplyBtn.setOnClickListener {
-            solveProblem("*", false)
+            val screenValue = screenOne.getText().toString()
+            if (screenOne.getText().toString().length == 0 || screenValue.endsWith("+") || screenValue.endsWith("-")
+                || screenValue.endsWith("/") || screenValue.endsWith("*")) {
+                solveProblem("", false)
+            } else {
+                solveProblem("*", false)
+            }
         }
         divideBtn.setOnClickListener {
-            solveProblem("/", false)
+            val screenValue = screenOne.getText().toString()
+            if (screenOne.getText().toString().length == 0 || screenValue.endsWith("+") || screenValue.endsWith("-")
+                || screenValue.endsWith("/") || screenValue.endsWith("*")) {
+                solveProblem("", false)
+            } else {
+                solveProblem("/", false)
+            }
         }
 //        plusOrMinusBtn.setOnClickListener {
 //            solveProblem("+/-", false)
@@ -89,8 +114,16 @@ class MainActivity: AppCompatActivity() {
             }
             screenTwo.text = ""
         }
-        
+
+//         if (screenOne.length() == 0) {
+//        if (screenOne.getText().toString().length == 0) {
+//            minusBtn.isEnabled = false
+//            lastValue.isDigitsOnly()
+//            screenOne.text = screenValue.substring(0, screenValue.length - 1)
+//        }
+
 //        fun updateDisplay() {
+
 //            var display = screenOne
 //            var answerDisplay = screenTwo
 //            display.setText(displayValue)
@@ -116,21 +149,17 @@ class MainActivity: AppCompatActivity() {
         }
     }
 
-        fun solveProblem(string: String, canClear: Boolean) {
-
-            if (screenTwo.text.isNotEmpty()) {
-                screenOne.text = ""
-            }
-            if (canClear) {
-                screenTwo.text = ""
-                screenOne.append(string)
-            } else {
-                screenOne.append(screenTwo.text)
-                screenOne.append(string)
-                screenTwo.text = ""
-            }
+    fun solveProblem(string: String, canClear: Boolean) {
+        if (screenTwo.text.isNotEmpty()) {
+            screenOne.text = ""
         }
-
-//        updateDisplay()
-//    }
+        if (canClear) {
+            screenTwo.text = ""
+            screenOne.append(string)
+        } else {
+            screenOne.append(screenTwo.text)
+            screenOne.append(string)
+            screenTwo.text = ""
+        }
+    }
 }
